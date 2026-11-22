@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 48" fill="#0A0A0A">
+  <!-- Wordmark set in DM Serif Display (free from Google Fonts). Outline the text before sending to a printer. -->
+  <text x="0" y="33" font-family="'DM Serif Display', Georgia, serif" font-size="32">Clevedon Barber</text>
+  <g transform="translate(244 4)" fill="none" stroke="#0A0A0A" stroke-linejoin="round">
+    <path d="M12 1.5H34L44.5 20L34 38.5H12L1.5 20Z" stroke-width="2"/>
+    <path d="M14.2 5.2H31.8L40.3 20L31.8 34.8H14.2L5.7 20Z" stroke-width="1" opacity=".55"/>
+    <text x="23" y="27.7" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="24" fill="#0A0A0A" stroke="none">1</text>
+  </g>
+</svg>

@@ -57,3 +57,30 @@ The reviews section shows three clearly labelled sample cards until this is set 
 Google gives a free monthly allowance that a single shop's site won't come close to, but it does ask for a billing card on the account. Set a budget alert at £1 for peace of mind.
 
 The map and directions buttons need no key. Set `SETTINGS.mapQuery` to the full street address once you have it.
+
+## Showcase: details already filled in
+
+From the shop's public listings (Fresha and OurLocals, checked 22 Nov 2026), now used in `showcase/`:
+
+- Address: 13 Old Church Road, Clevedon BS21 6LZ (map pin, directions, Google structured data)
+- Phone: 07393 538789
+- Hours: Mon to Sat 8:30am to 6:30pm, Sun 9:30am to 4pm. **Check these against Google Maps**: OurLocals lists 9am to 6:30pm and Sun 10am to 4pm instead. Once live Google reviews are switched on, the hours update themselves from Google.
+
+## Showcase: star rating
+
+The reviews section shows a big star rating. Until there's a real figure it shows 4.9 with a "Sample rating" tag. To use the real one without setting up the Google API, read the rating and review count off the shop's Google Maps listing and set `SETTINGS.rating` and `SETTINGS.reviewCount` in `showcase/script.js`. This also shows the rating badge on the opening photo. With live Google reviews switched on, both fill in automatically and stay current.
+
+## Showcase: gallery photos
+
+The 23 photos Kam supplied (originals in `haircut-images/`) are in `showcase/assets/photos/work/`, each in two sizes: `cut-NN-small.jpg` (600px wide, for the grid) and `cut-NN.jpg` (1200px wide, opened full screen). The first 8 show straight away; "Show all 23 cuts" reveals the rest.
+
+To add more, resize with macOS's built-in tool and add a matching `<li>` in `showcase/index.html`:
+
+    sips -s format jpeg -s formatOptions 74 -Z 800  photo.jpg --out cut-24-small.jpg
+    sips -s format jpeg -s formatOptions 80 -Z 1600 photo.jpg --out cut-24.jpg
+
+The `haircut-images/` folder is only the source; it doesn't need deploying.
+
+## Showcase: logo
+
+`showcase/assets/logo-white.svg`, `logo-black.svg` and `logo-mark-white.svg` (the hexagon on its own). The lettering is DM Serif Display; convert the text to outlines before sending the files to a printer or signwriter.
