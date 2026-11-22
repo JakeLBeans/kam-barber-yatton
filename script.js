@@ -1,5 +1,5 @@
 /* ==========================================================
-   Clevedon Barber 1 — showcase
+   Clevedon Barber 1
    Everything a non-developer might need to change is in SETTINGS.
    ========================================================== */
 
