@@ -13,7 +13,7 @@ const SETTINGS = {
   reviewCount: 164,
 
   // Online booking page (Booksy, Fresha, Setmore...). Leave empty to hide the "Book online" button.
-  bookingUrl: "",
+  bookingUrl: "https://booksy.com/en-gb/190439_clevedon-barber1_barber_1143398_clevedon",
 
   // Instagram profile, e.g. "https://www.instagram.com/clevedonbarber1/". Leave empty to hide the link.
   instagramUrl: "",

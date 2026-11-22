@@ -18,15 +18,14 @@ Real contact details and hours, the 23 cut photos with a full-screen viewer, the
 | `assets/` | Logos, favicon, share image and photos |
 | `haircut-images/` | Kam's original photos (not deployed) |
 | `vercel.json` | Hosting settings |
+| `robots.txt`, `sitemap.xml` | Tell search engines what to index |
+| `favicon.ico`, `site.webmanifest` | Browser tab and home-screen icons |
 
 ## Still to do
 
 ### Needs Kam
 
-- [ ] **Prices.** Every price is a sample figure. Get the real list and update the price section in `index.html`.
-- [ ] **Opening hours.** Currently Mon to Sat 8:30am to 6:30pm, Sun 9:30am to 4pm, taken from Fresha. OurLocals says 9am to 6:30pm and Sun 10am to 4pm instead. Check against his Google Maps listing. To change them, edit the hours table (`data-open` / `data-close` in 24-hour time, plus the visible text) **and** the `openingHoursSpecification` near the top of `index.html`.
-- [ ] **Small print to confirm.** "Card or cash" and "Over 65s, Tuesday to Friday". Remove anything that isn't true.
-- [ ] **Booking.** There's no online booking link, so every "Book" button tells people to call. The shop appears on Booksy; if he takes bookings there (or on Fresha, Setmore and so on), put the link in `SETTINGS.bookingUrl` in `script.js`.
+- [ ] **Small print to confirm.** "Card or cash" in the prices section. Remove it if it isn't true.
 - [ ] **Photo permission.** Many of the gallery photos are of children. Check he has the parents' OK to put them on the website.
 - [ ] **Real reviews.** The reviews slider holds six cards labelled "Sample review". Either replace them with real reviews (see "Adding reviews" below) or switch on live Google reviews (see below), which removes them automatically.
 
@@ -35,7 +34,14 @@ Real contact details and hours, the 23 cut photos with a full-screen viewer, the
 - [ ] **Deploy.** In the Vercel project settings, leave **Root Directory** empty (the site is at the top of the repo), then add `clevedonbarber1.com` under *Domains* and follow Vercel's instructions for the DNS records at the registrar. Vercel sets up HTTPS on its own.
 - [ ] **Check the domain is in Kam's name.** If you registered it in your account to get things moving, move it to his name and email (or make sure he can log in), and turn on auto-renew.
 - [ ] **Test the link preview.** Once it's live, paste the link into a WhatsApp chat to yourself, or Facebook's Sharing Debugger (https://developers.facebook.com/tools/debug/), to check the preview image and text appear.
-- [ ] **Tell Google.** Add the site to Google Search Console (free), and put the web address on his Google Business Profile.
+- [ ] **Tell Google.** This is what gets the site into search results quickly:
+  1. Go to Google Search Console (https://search.google.com/search-console), add a **Domain** property for `clevedonbarber1.com`, and verify it with the TXT record it gives you at the domain registrar.
+  2. Under *Sitemaps*, submit `https://clevedonbarber1.com/sitemap.xml`.
+  3. Under *URL inspection*, enter `https://clevedonbarber1.com/` and click *Request indexing*.
+  4. Put `https://clevedonbarber1.com` in the *Website* field of his Google Business Profile. This link matters most for local searches like "barber Clevedon".
+  5. Optional: do the same in Bing Webmaster Tools (https://www.bing.com/webmasters), which can import straight from Search Console.
+- [ ] **Check the business data.** Paste the address into Google's Rich Results Test (https://search.google.com/test/rich-results). It should find a *Local business* with no errors.
+- [ ] **Same details everywhere.** Make sure Fresha, Booksy, OurLocals, Facebook and so on use exactly the same name, address and phone number as the site, and link to it. Google trusts matching details.
 
 ### Optional
 
@@ -51,6 +57,11 @@ Real contact details and hours, the 23 cut photos with a full-screen viewer, the
 - **Wheelchair access**, shown on the page and in the Google search data.
 - **Hosting files:** `vercel.json` (clean addresses with no `.html`, security headers, image caching), `.vercelignore` (keeps `haircut-images/` and this README off the live site) and `.gitignore`.
 - **Domain set up:** the canonical address `https://clevedonbarber1.com/`, the full-address share image and page address for WhatsApp and Facebook previews, and the site address and logo in Google's data.
+- **Prices** from Kam's price list (22 Nov 2026), in the price section of `index.html`. The price range in the business data near the top (`priceRange`) is £10–£39; update it if the cheapest or dearest price changes.
+- **Booking** goes to his Booksy page (https://booksy.com/en-gb/190439_clevedon-barber1_barber_1143398_clevedon), set in `SETTINGS.bookingUrl` in `script.js`. The "Book on Booksy" button is in Find us.
+- **Opening hours** Mon to Sat 8:30am to 6:30pm, Sun 10am to 4pm, confirmed by Kam on 22 Nov 2026. To change them, edit the hours table (`data-open` / `data-close` in 24-hour time, plus the visible text) **and** the `openingHoursSpecification` near the top of `index.html`. Keep his Google Business Profile matching.
+- **Search engine basics:** page title and description, canonical address, `robots.txt`, `sitemap.xml`, and Google business data (address, phone, hours, map location, wheelchair access, logo). http and www both redirect to `https://clevedonbarber1.com/`. If the hours, phone or address change, update the business data near the top of `index.html` too. Update `<lastmod>` in `sitemap.xml` after a big change.
+- **Icons:** `favicon.ico`, `assets/favicon.svg`, and PNGs in `assets/icons/` for iPhone home screens, Android and Google results, plus `site.webmanifest`.
 - **Share image:** `assets/og-image.jpg`, 1200×630, 156KB, regenerated with the current font and logo.
 - **Live Google reviews key:** when setting up the API key, restrict it to `https://clevedonbarber1.com/*`.
 
