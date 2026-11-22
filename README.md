@@ -25,19 +25,12 @@ Real contact details and hours, the 23 cut photos with a full-screen viewer, the
 
 ### Needs Kam
 
+- [ ] **Website on his Google Business Profile.** Jake suggested the edit on 22 Nov 2026. Kam should add `https://clevedonbarber1.com` in the *Website* field himself so it goes through. This matters most for local searches like "barber Clevedon".
 - [ ] **Booksy name.** His Booksy page is called "Clevedon barber1" and is marked as a mobile service. Change it to "Clevedon Barber 1" and the shop so it matches the site and Google.
 
 ### Needs you
 
 - [ ] **Check the domain is in Kam's name.** If you registered it in your account to get things moving, move it to his name and email (or make sure he can log in), and turn on auto-renew.
-- [ ] **Test the link preview.** Once it's live, paste the link into a WhatsApp chat to yourself, or Facebook's Sharing Debugger (https://developers.facebook.com/tools/debug/), to check the preview image and text appear.
-- [ ] **Tell Google.** This is what gets the site into search results quickly:
-  1. Go to Google Search Console (https://search.google.com/search-console), add a **Domain** property for `clevedonbarber1.com`, and verify it with the TXT record it gives you at the domain registrar.
-  2. Under *Sitemaps*, submit `https://clevedonbarber1.com/sitemap.xml`.
-  3. Under *URL inspection*, enter `https://clevedonbarber1.com/` and click *Request indexing*.
-  4. Put `https://clevedonbarber1.com` in the *Website* field of his Google Business Profile. This link matters most for local searches like "barber Clevedon".
-  5. Optional: do the same in Bing Webmaster Tools (https://www.bing.com/webmasters), which can import straight from Search Console.
-- [ ] **Check the business data.** Paste the address into Google's Rich Results Test (https://search.google.com/test/rich-results). It should find a *Local business* with no errors.
 - [ ] **Same details everywhere.** Make sure Fresha, Booksy, OurLocals, Facebook and so on use exactly the same name, address and phone number as the site, and link to it. Google trusts matching details.
 
 ### Optional
@@ -49,6 +42,8 @@ Real contact details and hours, the 23 cut photos with a full-screen viewer, the
 ## Already done
 
 - **Confirmed by Kam:** he takes card and cash, and parents have given permission for the gallery photos of children.
+- **Checked 22 Nov 2026:** Google's Rich Results Test finds a valid Local business and Organization with no warnings. The share preview tags and image (1200×630, 156KB) are served correctly to Facebook and WhatsApp.
+- **Google Search Console** set up on 22 Nov 2026, with the sitemap (`https://clevedonbarber1.com/sitemap.xml`) submitted and indexing requested. Check back in a week for any problems under *Pages*.
 - **Live** at https://clevedonbarber1.com on Vercel (Root Directory empty). http and www redirect to it.
 - **Address** 13 Old Church Road, Clevedon BS21 6LZ and **phone** 07393 538789, from the shop's public listings (Fresha and OurLocals, checked 22 Nov 2026). They're used in the text, call buttons, map pin, directions and the Google search data.
 - **Google rating** of 4.9 from 164 reviews. Google's own map card shows the same figures.
