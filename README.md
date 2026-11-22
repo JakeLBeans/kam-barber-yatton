@@ -25,13 +25,10 @@ Real contact details and hours, the 23 cut photos with a full-screen viewer, the
 
 ### Needs Kam
 
-- [ ] **Small print to confirm.** "Card or cash" in the prices section. Remove it if it isn't true.
-- [ ] **Photo permission.** Many of the gallery photos are of children. Check he has the parents' OK to put them on the website.
-- [ ] **Real reviews.** The reviews slider holds six cards labelled "Sample review". Either replace them with real reviews (see "Adding reviews" below) or switch on live Google reviews (see below), which removes them automatically.
+- [ ] **Booksy name.** His Booksy page is called "Clevedon barber1" and is marked as a mobile service. Change it to "Clevedon Barber 1" and the shop so it matches the site and Google.
 
 ### Needs you
 
-- [ ] **Deploy.** In the Vercel project settings, leave **Root Directory** empty (the site is at the top of the repo), then add `clevedonbarber1.com` under *Domains* and follow Vercel's instructions for the DNS records at the registrar. Vercel sets up HTTPS on its own.
 - [ ] **Check the domain is in Kam's name.** If you registered it in your account to get things moving, move it to his name and email (or make sure he can log in), and turn on auto-renew.
 - [ ] **Test the link preview.** Once it's live, paste the link into a WhatsApp chat to yourself, or Facebook's Sharing Debugger (https://developers.facebook.com/tools/debug/), to check the preview image and text appear.
 - [ ] **Tell Google.** This is what gets the site into search results quickly:
@@ -45,12 +42,14 @@ Real contact details and hours, the 23 cut photos with a full-screen viewer, the
 
 ### Optional
 
-- [ ] **Live Google reviews.** Makes the rating, the latest reviews and the opening hours update themselves. Setup is below.
+- [ ] **Live Google reviews.** Makes the rating, the latest reviews and the opening hours update themselves. Needs a Google Cloud account with a billing card. Usually free for a shop this size, but not guaranteed. The hand-copied reviews work fine without it. Setup is below.
 - [ ] **Instagram.** He doesn't seem to have one. If he sets one up, put the profile link in `SETTINGS.instagramUrl` and the Instagram links appear by themselves.
 - [ ] **Printing the logo.** The logo files' lettering is live text. Convert it to outlines (Figma or Illustrator) before sending to a printer or signwriter.
 
 ## Already done
 
+- **Confirmed by Kam:** he takes card and cash, and parents have given permission for the gallery photos of children.
+- **Live** at https://clevedonbarber1.com on Vercel (Root Directory empty). http and www redirect to it.
 - **Address** 13 Old Church Road, Clevedon BS21 6LZ and **phone** 07393 538789, from the shop's public listings (Fresha and OurLocals, checked 22 Nov 2026). They're used in the text, call buttons, map pin, directions and the Google search data.
 - **Google rating** of 4.9 from 164 reviews. Google's own map card shows the same figures.
 - **Photos:** the interior shot plus 23 cuts in two sizes, with no location data in the files.
@@ -59,6 +58,7 @@ Real contact details and hours, the 23 cut photos with a full-screen viewer, the
 - **Domain set up:** the canonical address `https://clevedonbarber1.com/`, the full-address share image and page address for WhatsApp and Facebook previews, and the site address and logo in Google's data.
 - **Prices** from Kam's price list (22 Nov 2026), in the price section of `index.html`. The price range in the business data near the top (`priceRange`) is £10–£39; update it if the cheapest or dearest price changes.
 - **Booking** goes to his Booksy page (https://booksy.com/en-gb/190439_clevedon-barber1_barber_1143398_clevedon), set in `SETTINGS.bookingUrl` in `script.js`. The "Book on Booksy" button is in Find us.
+- **Reviews:** six real 5-star Google reviews, copied word for word on 22 Nov 2026 with the reviewer's first name and initial. Swap in newer ones now and then (see "Adding reviews"), and update `rating` and `reviewCount` in `script.js` from his Google listing.
 - **Opening hours** Mon to Sat 8:30am to 6:30pm, Sun 10am to 4pm, confirmed by Kam on 22 Nov 2026. To change them, edit the hours table (`data-open` / `data-close` in 24-hour time, plus the visible text) **and** the `openingHoursSpecification` near the top of `index.html`. Keep his Google Business Profile matching.
 - **Search engine basics:** page title and description, canonical address, `robots.txt`, `sitemap.xml`, and Google business data (address, phone, hours, map location, wheelchair access, logo). http and www both redirect to `https://clevedonbarber1.com/`. If the hours, phone or address change, update the business data near the top of `index.html` too. Update `<lastmod>` in `sitemap.xml` after a big change.
 - **Icons:** `favicon.ico`, `assets/favicon.svg`, and PNGs in `assets/icons/` for iPhone home screens, Android and Google results, plus `site.webmanifest`.
