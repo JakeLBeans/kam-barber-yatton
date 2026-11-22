@@ -8,8 +8,11 @@ A static website: plain HTML, CSS and a little JavaScript. There's no build step
 | --- | --- |
 | `black-gold/` | Black with gold-leaf lettering and a gold pier |
 | `navy-red/` | Barber-pole navy, red and white |
+| `showcase/` | Photo-led on white, with a gallery of cuts, live Google reviews, and a map with directions |
 
-Open the top-level `index.html` to compare them side by side. Once Kam picks one, deploy only that folder; the comparison page is just for choosing. The two versions share the same content and structure, so any change to the words (prices, hours, phone) needs making in both until one is chosen.
+Open the top-level `index.html` to compare them side by side.
+
+`showcase/` keeps its settings (map location, booking link, Instagram, Google reviews) in `SETTINGS` at the top of its `script.js`. Once Kam picks one, deploy only that folder; the comparison page is just for choosing. The two versions share the same content and structure, so any change to the words (prices, hours, phone) needs making in both until one is chosen.
 
 ## Files in each version
 
@@ -40,3 +43,17 @@ Everything below is a placeholder right now.
 - Register the domain in **his own name and email**, with a mainstream registrar (Cloudflare, Namecheap, 123-reg). Turn on auto-renew and two-factor login.
 - A site like this costs nothing to host. The domain is the only yearly cost, roughly £10 to £15.
 - Claim his **Google Business Profile** himself, for free. Any call offering to "verify" or "rank" it for a fee is a scam.
+
+## Showcase: turning on live Google reviews
+
+The reviews section shows three clearly labelled sample cards until this is set up. Once it is, the star rating and the latest reviews come straight from Google and keep themselves up to date.
+
+1. Make sure the shop has a **Google Business Profile** and that it's claimed in Kam's name.
+2. Find its **Place ID** with Google's Place ID Finder: https://developers.google.com/maps/documentation/places/web-service/place-id
+3. In **Google Cloud Console**, create a project (in Kam's account), turn on **Maps JavaScript API** and **Places API (New)**, and create an **API key**.
+4. Restrict the key: under *Application restrictions*, choose *Websites* and add the live domain (e.g. `https://clevedonbarber1.co.uk/*`). Under *API restrictions*, allow only those two APIs.
+5. Put both values into `SETTINGS.googleApiKey` and `SETTINGS.googlePlaceId` in `showcase/script.js`.
+
+Google gives a free monthly allowance that a single shop's site won't come close to, but it does ask for a billing card on the account. Set a budget alert at £1 for peace of mind.
+
+The map and directions buttons need no key. Set `SETTINGS.mapQuery` to the full street address once you have it.
