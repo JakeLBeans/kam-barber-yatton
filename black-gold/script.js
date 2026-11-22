@@ -1,6 +1,6 @@
 /* ==========================================================
    Clevedon Barber 1 — site behaviour
-   The two links below are the only settings most people need.
+   Everything a non-developer might need to change is in SETTINGS.
    ========================================================== */
 
 const SETTINGS = {
@@ -8,8 +8,22 @@ const SETTINGS = {
   bookingUrl: "",
   // Instagram profile, e.g. "https://www.instagram.com/clevedonbarber1/"
   instagramUrl: "",
-  phone: "tel:+441275000000",
+  phone: "tel:+447393538789",
+
+  // What Google Maps searches for to place the pin and give directions.
+  mapQuery: "Clevedon Barber 1, 13 Old Church Road, Clevedon BS21 6LZ",
+
+  // The shop's Google star rating, as shown on its Google Maps listing.
+  rating: 4.9,
+  reviewCount: 164,
+
+  // "Website by" credit in the footer. Hidden if either is empty.
+  creditName: "Jake L",
+  creditUrl: "https://jakelovelock.com",
 };
+
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
 /* ---------- Links ---------- */
 (function wireLinks() {
@@ -17,7 +31,10 @@ const SETTINGS = {
   document.querySelectorAll("[data-book-external]").forEach((a) => {
     a.href = booking;
     if (SETTINGS.bookingUrl) a.rel = "noopener";
-    else a.textContent = "Call 01275 000000";
+    else {
+      a.textContent = "Call 07393 538789";
+      a.removeAttribute("target"); // a phone link shouldn't open a new tab
+    }
   });
   if (!SETTINGS.bookingUrl) {
     document.querySelector("[data-book-alt]")?.setAttribute("hidden", "");
@@ -176,4 +193,137 @@ const SETTINGS = {
       return;
     }
   }
+})();
+
+/* ---------- Map, directions, rating, credit ---------- */
+(function details() {
+  const q = encodeURIComponent(SETTINGS.mapQuery);
+  $$('[data-directions="google"]').forEach((a) => (a.href = `https://www.google.com/maps/dir/?api=1&destination=${q}`));
+  $$('[data-directions="apple"]').forEach((a) => (a.href = `https://maps.apple.com/?daddr=${q}`));
+
+  // The map only loads once it's close to being seen
+  const map = $("[data-map]");
+  if (map) {
+    const src = `https://maps.google.com/maps?q=${q}&z=16&output=embed`;
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) { map.src = src; io.disconnect(); }
+      }, { rootMargin: "600px" });
+      io.observe(map);
+    } else {
+      map.src = src;
+    }
+  }
+
+  if (SETTINGS.rating) {
+    const value = Number(SETTINGS.rating).toFixed(1);
+    $("[data-score-num]").textContent = value;
+    $("[data-score-count]").textContent = SETTINGS.reviewCount ? `from ${SETTINGS.reviewCount} Google reviews` : "on Google";
+    $("[data-score]").setAttribute("aria-label", `Rated ${value} out of 5 from ${SETTINGS.reviewCount} Google reviews`);
+  } else {
+    $(".rating")?.setAttribute("hidden", "");
+  }
+
+  const credit = $("[data-credit]");
+  if (credit && SETTINGS.creditName && SETTINGS.creditUrl) {
+    const link = $("[data-credit-link]", credit);
+    link.textContent = SETTINGS.creditName;
+    link.href = SETTINGS.creditUrl;
+    credit.hidden = false;
+  }
+
+  // Tell screen-reader users when a link opens a new tab
+  $$('a[target="_blank"]').forEach((a) => {
+    if (a.querySelector(".sr-only")) return;
+    const note = document.createElement("span");
+    note.className = "sr-only";
+    note.textContent = " (opens in a new tab)";
+    a.appendChild(note);
+  });
+})();
+
+/* ---------- Gallery: show all ---------- */
+(function galleryMore() {
+  const btn = $("[data-gallery-more]");
+  const gallery = $("[data-gallery]");
+  if (!btn || !gallery) return;
+  const total = $$("li", gallery).length;
+  const extras = $$(".is-extra", gallery);
+  if (!extras.length) { btn.parentElement.hidden = true; return; }
+  btn.addEventListener("click", () => {
+    const open = !gallery.classList.contains("is-expanded");
+    gallery.classList.toggle("is-expanded", open);
+    btn.setAttribute("aria-expanded", String(open));
+    btn.textContent = open ? "Show fewer" : `Show all ${total} cuts`;
+    if (open) extras.forEach((li, i) => (li.style.animationDelay = `${Math.min(i, 12) * 40}ms`));
+    else $("#work").scrollIntoView({ block: "start" });
+  });
+})();
+
+/* ---------- Full-screen photo viewer ---------- */
+(function lightbox() {
+  const dialog = $("[data-lightbox]");
+  const img = $("[data-lightbox-img]");
+  if (!dialog || !img || typeof dialog.showModal !== "function") return;
+  const shots = $$("[data-gallery] button.shot img");
+  let index = 0;
+  const show = (i) => {
+    index = (i + shots.length) % shots.length;
+    img.src = shots[index].dataset.full || shots[index].src;
+    img.alt = shots[index].alt;
+    [index + 1, index - 1].forEach((n) => {
+      const s = shots[(n + shots.length) % shots.length];
+      if (s?.dataset.full) new Image().src = s.dataset.full;
+    });
+  };
+  shots.forEach((s, i) => s.closest("button").addEventListener("click", () => { show(i); dialog.showModal(); }));
+  $("[data-lightbox-prev]").addEventListener("click", () => show(index - 1));
+  $("[data-lightbox-next]").addEventListener("click", () => show(index + 1));
+  $("[data-lightbox-close]").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
+  dialog.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") show(index - 1);
+    if (e.key === "ArrowRight") show(index + 1);
+  });
+  let touchX = null;
+  dialog.addEventListener("touchstart", (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  dialog.addEventListener("touchend", (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) show(index + (dx < 0 ? 1 : -1));
+    touchX = null;
+  });
+})();
+
+/* ---------- Phone menu ---------- */
+(function phoneMenu() {
+  const btn = $("[data-burger]");
+  const menu = $("[data-menu]");
+  const header = $(".site-header");
+  if (!btn || !menu) return;
+  const setOpen = (open, { returnFocus = true, fromKeyboard = false } = {}) => {
+    menu.classList.toggle("is-open", open);
+    header?.classList.toggle("menu-open", open);
+    document.documentElement.classList.toggle("menu-lock", open);
+    btn.setAttribute("aria-expanded", String(open));
+    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    if (open) {
+      menu.removeAttribute("inert");
+      const status = $("[data-status]");
+      const menuStatus = $("[data-menu-status]");
+      if (status && menuStatus) {
+        menuStatus.textContent = status.textContent;
+        menuStatus.classList.toggle("is-open", status.classList.contains("is-open"));
+      }
+      if (fromKeyboard) setTimeout(() => menu.querySelector("a")?.focus({ preventScroll: true }), 350);
+    } else {
+      menu.setAttribute("inert", "");
+      if (returnFocus) btn.focus({ preventScroll: true });
+    }
+  };
+  // A click with detail 0 came from the keyboard (Enter or Space)
+  btn.addEventListener("click", (e) => setOpen(btn.getAttribute("aria-expanded") !== "true", { fromKeyboard: e.detail === 0 }));
+  menu.addEventListener("click", (e) => { if (e.target.closest("a")) setOpen(false, { returnFocus: false }); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && menu.classList.contains("is-open")) setOpen(false); });
+  window.matchMedia("(min-width: 52.01rem)").addEventListener("change", (e) => { if (e.matches) setOpen(false, { returnFocus: false }); });
 })();

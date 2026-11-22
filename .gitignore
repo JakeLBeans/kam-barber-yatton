@@ -1,0 +1,20 @@
+# macOS / Windows clutter
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Vercel and environment files (never commit API keys)
+.vercel/
+.env
+.env.*
+
+# Dependencies and logs, if a build step is ever added
+node_modules/
+npm-debug.log*
+*.log

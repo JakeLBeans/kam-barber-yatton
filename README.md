@@ -1,90 +1,94 @@
 # Clevedon Barber 1
 
-A static website: plain HTML, CSS and a little JavaScript. There's no build step and no framework, so it runs on any static host (Netlify, Cloudflare Pages, GitHub Pages) for free.
+**https://clevedonbarber1.com**
 
-## Two versions
+A static website for Clevedon Barber 1, 13 Old Church Road, Clevedon. Plain HTML, CSS and a little JavaScript: no build step and no framework, so it can be hosted for free (it's set up for Vercel).
 
-| Folder | Look |
+## The three versions
+
+| Folder | Look | Status |
+| --- | --- | --- |
+| `showcase/` | Photo-led on white, black and gold accents, serif headings | **The chosen version**, sent to Kam |
+| `black-gold/` | Black with gold-leaf lettering and a gold line drawing of the pier | Alternative |
+| `navy-red/` | Barber-pole navy, red and white, with the pier drawing | Alternative |
+
+The top-level `index.html` shows all three side by side. It's only for choosing and doesn't need to go live.
+
+All three have the same content: real contact details and hours, the 23 cut photos with a full-screen viewer, the Google rating, a map with directions, wheelchair access, a phone burger menu, and the "Website by" credit. `showcase/` also has its own logo, a reviews slider, scroll animations and a scroll cue on phones. All three were checked against WCAG 2.2 AA (contrast, text size, keyboard use, screen-reader labels, 320px screens).
+
+## Still to do
+
+### Needs Kam
+
+- [ ] **Prices.** Every price on all three versions is a sample figure. Get the real list and update the price section in each `index.html`.
+- [ ] **Opening hours.** Currently Mon to Sat 8:30am to 6:30pm, Sun 9:30am to 4pm, taken from Fresha. OurLocals says 9am to 6:30pm and Sun 10am to 4pm instead. Check against his Google Maps listing. To change them, edit the hours table (`data-open` / `data-close` in 24-hour time, plus the visible text) **and** the `openingHoursSpecification` near the top of `index.html`.
+- [ ] **Small print to confirm.** On all three: "Card or cash" and "Over 65s, Tuesday to Friday". On the two alternatives only: "Prices include a wash on request" and "Saturdays fill up fast". Remove anything that isn't true.
+- [ ] **Booking.** There's no online booking link, so every "Book" button tells people to call. The shop appears on Booksy; if he takes bookings there (or on Fresha, Setmore and so on), put the link in `SETTINGS.bookingUrl` in `script.js`.
+- [ ] **Photo permission.** Many of the gallery photos are of children. Check he has the parents' OK to put them on the website.
+- [ ] **Real reviews (showcase).** The reviews slider holds six cards labelled "Sample review". Either replace them with real reviews (see "Adding reviews" below) or switch on live Google reviews (see below), which removes them automatically.
+
+### Needs you
+
+- [ ] **Deploy.** In the Vercel project settings, set **Root Directory** to `showcase`, then add `clevedonbarber1.com` under *Domains* and follow Vercel's instructions for the DNS records at the registrar. Vercel sets up HTTPS on its own. (`showcase/` already has its own `vercel.json`.)
+- [ ] **Check the domain is in Kam's name.** If you registered it in your account to get things moving, move it to his name and email (or make sure he can log in), and turn on auto-renew.
+- [ ] **Test the link preview.** Once it's live, paste the link into a WhatsApp chat to yourself, or Facebook's Sharing Debugger (https://developers.facebook.com/tools/debug/), to check the preview image and text appear.
+- [ ] **Tell Google.** Add the site to Google Search Console (free), and put the web address on his Google Business Profile.
+
+### Optional
+
+- [ ] **Live Google reviews (showcase).** Makes the rating, the latest reviews and the opening hours update themselves. Setup is below.
+- [ ] **Instagram.** He doesn't seem to have one. If he sets one up, put the profile link in `SETTINGS.instagramUrl` and the Instagram links appear by themselves.
+- [ ] **Printing the logo.** The logo files' lettering is live text. Convert it to outlines (Figma or Illustrator) before sending to a printer or signwriter.
+
+## Already done
+
+- **Address** 13 Old Church Road, Clevedon BS21 6LZ and **phone** 07393 538789, from the shop's public listings (Fresha and OurLocals, checked 22 Nov 2026). They're used in the text, call buttons, map pin, directions and the Google search data.
+- **Google rating** of 4.9 from 164 reviews. Google's own map card shows the same figures.
+- **Photos:** the interior shot plus 23 cuts in two sizes, with no location data in the files.
+- **Wheelchair access**, shown on the page and in the Google search data.
+- **Hosting files:** `vercel.json` (clean addresses with no `.html`, security headers, image caching; a copy is in `showcase/` for the Root Directory setting), `.vercelignore` (keeps `haircut-images/` and this README off the live site) and `.gitignore`.
+- **Domain set up in the showcase:** the canonical address `https://clevedonbarber1.com/`, the full-address share image and page address for WhatsApp and Facebook previews, and the site address and logo in Google's data.
+- **Share image:** `showcase/assets/og-image.jpg`, 1200×630, 156KB, regenerated with the current font and logo.
+- **Live Google reviews key:** when setting up the API key, restrict it to `https://clevedonbarber1.com/*`.
+
+## Where to change things
+
+Each version keeps its everyday settings in `SETTINGS` at the top of its `script.js`:
+
+| Setting | What it does |
 | --- | --- |
-| `black-gold/` | Black with gold-leaf lettering and a gold pier |
-| `navy-red/` | Barber-pole navy, red and white |
-| `showcase/` | Photo-led on white, with a gallery of cuts, live Google reviews, and a map with directions |
+| `bookingUrl` | Online booking page. Empty means "call to book". |
+| `instagramUrl` | Instagram profile. Empty hides the links. |
+| `mapQuery` | What the map and directions search for. |
+| `rating`, `reviewCount` | The Google rating shown on the page. Update now and then from his Google listing. |
+| `creditName`, `creditUrl` | The "Website by" credit in the footer. |
+| `googleApiKey`, `googlePlaceId` | (showcase only) Live Google reviews, as set up below. |
 
-Open the top-level `index.html` to compare them side by side.
+Everything else (prices, hours, wording) is in that version's `index.html`, and colours, fonts and layout are in `styles.css`.
 
-`showcase/` keeps its settings (map location, booking link, Instagram, Google reviews) in `SETTINGS` at the top of its `script.js`. Once Kam picks one, deploy only that folder; the comparison page is just for choosing. The two versions share the same content and structure, so any change to the words (prices, hours, phone) needs making in both until one is chosen.
+### Adding gallery photos
 
-## Files in each version
-
-| File | What's in it |
-| --- | --- |
-| `index.html` | All the words: prices, opening hours, address, phone |
-| `styles.css` | Colours, fonts and layout |
-| `script.js` | Booking and Instagram links (`SETTINGS` at the top), the pier drawing, the "open now" status |
-| `assets/` | Favicon, social share image, and `photos/` for shop photos |
-
-## Before going live: things to get from the shop
-
-Everything below is a placeholder right now.
-
-- [ ] **Phone number.** Find and replace `01275 000000` and `+441275000000` in `index.html` and `script.js`.
-- [ ] **Address.** Replace "Shop address" in the Find us section, and `SHOP ADDRESS` / `BS21` in the structured data at the top of `index.html`. Also update the "Get directions" link query.
-- [ ] **Prices.** All of them are sample figures. Confirm each service and price.
-- [ ] **Opening hours.** Update both the table (`data-open` / `data-close` in 24-hour time, plus the visible text) and the `openingHoursSpecification` near the top of `index.html`.
-- [ ] **Booking link.** If he uses Booksy, Fresha, Setmore or similar, put the URL in `SETTINGS.bookingUrl` in `script.js`. Leave it empty and the site tells people to call instead.
-- [ ] **Instagram.** Put the profile URL in `SETTINGS.instagramUrl`. The Instagram links stay hidden until it's set.
-- [x] **Interior photo.** In place as `assets/photos/inside.webp` in both versions.
-- [ ] **Two more photos.** Add a shop front and a recent cut to `assets/photos/`, then swap each placeholder `<div class="photo">` for an `<img>` with a short description in `alt`.
-- [ ] **Small print.** Check the details about parking, step-free access, over-65s on weekdays, card or cash, and washes.
-- [ ] **Domain.** Once it's chosen (clevedonbarber1 or clevedonbarberone), add `<link rel="canonical">` and make the `og:image` URL absolute.
-
-## Avoiding the scams he's hit before
-
-- Register the domain in **his own name and email**, with a mainstream registrar (Cloudflare, Namecheap, 123-reg). Turn on auto-renew and two-factor login.
-- A site like this costs nothing to host. The domain is the only yearly cost, roughly £10 to £15.
-- Claim his **Google Business Profile** himself, for free. Any call offering to "verify" or "rank" it for a fee is a scam.
-
-## Showcase: turning on live Google reviews
-
-The reviews section shows three clearly labelled sample cards until this is set up. Once it is, the star rating and the latest reviews come straight from Google and keep themselves up to date.
-
-1. Make sure the shop has a **Google Business Profile** and that it's claimed in Kam's name.
-2. Find its **Place ID** with Google's Place ID Finder: https://developers.google.com/maps/documentation/places/web-service/place-id
-3. In **Google Cloud Console**, create a project (in Kam's account), turn on **Maps JavaScript API** and **Places API (New)**, and create an **API key**.
-4. Restrict the key: under *Application restrictions*, choose *Websites* and add the live domain (e.g. `https://clevedonbarber1.co.uk/*`). Under *API restrictions*, allow only those two APIs.
-5. Put both values into `SETTINGS.googleApiKey` and `SETTINGS.googlePlaceId` in `showcase/script.js`.
-
-Google gives a free monthly allowance that a single shop's site won't come close to, but it does ask for a billing card on the account. Set a budget alert at £1 for peace of mind.
-
-The map and directions buttons need no key. Set `SETTINGS.mapQuery` to the full street address once you have it.
-
-## Showcase: details already filled in
-
-From the shop's public listings (Fresha and OurLocals, checked 22 Nov 2026), now used in `showcase/`:
-
-- Address: 13 Old Church Road, Clevedon BS21 6LZ (map pin, directions, Google structured data)
-- Phone: 07393 538789
-- Hours: Mon to Sat 8:30am to 6:30pm, Sun 9:30am to 4pm. **Check these against Google Maps**: OurLocals lists 9am to 6:30pm and Sun 10am to 4pm instead. Once live Google reviews are switched on, the hours update themselves from Google.
-
-## Showcase: star rating
-
-The reviews section shows a big star rating. Until there's a real figure it shows 4.9 with a "Sample rating" tag. To use the real one without setting up the Google API, read the rating and review count off the shop's Google Maps listing and set `SETTINGS.rating` and `SETTINGS.reviewCount` in `showcase/script.js`. This also shows the rating badge on the opening photo. With live Google reviews switched on, both fill in automatically and stay current.
-
-## Showcase: gallery photos
-
-The 23 photos Kam supplied (originals in `haircut-images/`) are in `showcase/assets/photos/work/`, each in two sizes: `cut-NN-small.jpg` (600px wide, for the grid) and `cut-NN.jpg` (1200px wide, opened full screen). The first 8 show straight away; "Show all 23 cuts" reveals the rest.
-
-To add more, resize with macOS's built-in tool and add a matching `<li>` in `showcase/index.html`:
+The originals Kam sent are in `haircut-images/` (not deployed). Each photo on the site comes in two sizes in `assets/photos/work/`: `cut-NN-small.jpg` for the grid and `cut-NN.jpg` for full screen. To add one, make both sizes with macOS's built-in tool, then copy one of the gallery `<li>` lines in `index.html`, point it at the new files and write a short description in `alt`:
 
     sips -s format jpeg -s formatOptions 74 -Z 800  photo.jpg --out cut-24-small.jpg
     sips -s format jpeg -s formatOptions 80 -Z 1600 photo.jpg --out cut-24.jpg
 
-The `haircut-images/` folder is only the source; it doesn't need deploying.
+### Adding reviews (showcase)
 
-## Showcase: logo
+Copy a card in the "What people say" list in `showcase/index.html`. There's a ready-made template in the comment just above the list. Change the words, name and stars. The slider grows to fit.
 
-`showcase/assets/logo-white.svg`, `logo-black.svg` and `logo-mark-white.svg` (the hexagon on its own). The lettering is DM Serif Display; convert the text to outlines before sending the files to a printer or signwriter.
+### Turning on live Google reviews (showcase)
 
-## Showcase: adding reviews
+1. Make sure Kam's **Google Business Profile** is claimed in his name (it's free).
+2. Find its **Place ID** with Google's Place ID Finder: https://developers.google.com/maps/documentation/places/web-service/place-id
+3. In **Google Cloud Console** (in Kam's account), create a project, turn on **Maps JavaScript API** and **Places API (New)**, and create an **API key**.
+4. Restrict the key. Under *Application restrictions* choose *Websites* and add the live domain (`https://clevedonbarber1.com/*`). Under *API restrictions* allow only those two APIs.
+5. Put both values in `SETTINGS.googleApiKey` and `SETTINGS.googlePlaceId` in `showcase/script.js`.
 
-The reviews section is a slider, so it can hold any number of reviews. To add one, copy a card in the "What people say" list in `showcase/index.html` (there's a ready-made template in the comment just above it) and change the words, name and stars. Delete the six `is-sample` cards once real reviews are in. If live Google reviews are switched on, the samples are removed automatically, and Google's latest five are added after any you've written by hand.
+Google's free monthly allowance is far more than one shop's site will use, but it asks for a billing card. Set a £1 budget alert for peace of mind. The map and directions buttons don't need a key.
+
+## Avoiding the scams he's hit before
+
+- The domain, Google Business Profile and any Google Cloud account should all be in **Kam's own name and email**, with two-factor login and auto-renew on.
+- Hosting this site costs nothing. The domain is the only yearly cost, roughly £10 to £15.
+- Any call offering to "verify" or "rank" his Google listing for a fee is a scam. Claiming it is free.
