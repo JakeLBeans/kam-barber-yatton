@@ -99,6 +99,11 @@
           <a class="btn btn-glass" href="#work">See recent cuts</a>
         </div>
       </div>
+      <!-- Phone-only scroll cue -->
+      <a class="scroll-cue" href="#work" aria-label="Scroll down to recent work" data-scroll-cue>
+        <span class="scroll-cue-text">Scroll</span>
+        <span class="scroll-cue-track" aria-hidden="true"></span>
+      </a>
     </section>
 
     <!-- ============ WORK ============ -->
@@ -169,26 +174,68 @@
           </div>
         </div>
 
-        <ul class="review-list" data-reviews data-reveal-group>
+        <!--
+          Reviews slider. To add a review, copy this card into the list below and change the words:
+
+          <li class="review">
+            <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
+            <blockquote><p>What the customer said.</p></blockquote>
+            <p class="review-by"><span>Customer name<span class="review-when">Google review</span></span></p>
+          </li>
+
+          Cards marked "is-sample" are placeholders: delete them once real reviews are in.
+          When live Google reviews are switched on (script.js), the samples are removed automatically
+          and Google's latest reviews are added after any you've written here.
+        -->
+        <ul class="review-list" id="review-list" data-reviews data-reveal-group tabindex="0" aria-label="Customer reviews">
           <li class="review is-sample">
             <p class="sample-tag">Sample review</p>
-            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
             <blockquote><p>Real reviews from Google will appear here once the shop's Google details are added.</p></blockquote>
             <p class="review-by">Customer name</p>
           </li>
           <li class="review is-sample">
             <p class="sample-tag">Sample review</p>
-            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
             <blockquote><p>Each card shows the star rating, what the customer wrote, their name and when they posted it.</p></blockquote>
             <p class="review-by">Customer name</p>
           </li>
           <li class="review is-sample">
             <p class="sample-tag">Sample review</p>
-            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
             <blockquote><p>Google shares up to five reviews at a time, and they update on their own.</p></blockquote>
             <p class="review-by">Customer name</p>
           </li>
+          <li class="review is-sample">
+            <p class="sample-tag">Sample review</p>
+            <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
+            <blockquote><p>To add your own, copy a card in index.html and change the words, name and stars.</p></blockquote>
+            <p class="review-by">Customer name</p>
+          </li>
+          <li class="review is-sample">
+            <p class="sample-tag">Sample review</p>
+            <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
+            <blockquote><p>Add as many as you like. The slider grows to fit them all.</p></blockquote>
+            <p class="review-by">Customer name</p>
+          </li>
+          <li class="review is-sample">
+            <p class="sample-tag">Sample review</p>
+            <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
+            <blockquote><p>Swipe on a phone, or use the arrows on a computer.</p></blockquote>
+            <p class="review-by">Customer name</p>
+          </li>
         </ul>
+        <div class="slider-controls" data-slider-controls>
+          <div class="slider-progress" aria-hidden="true"><span data-slider-bar></span></div>
+          <div class="slider-btns">
+            <button class="slider-btn" type="button" aria-controls="review-list" aria-label="Previous reviews" data-slider-prev>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <button class="slider-btn" type="button" aria-controls="review-list" aria-label="Next reviews" data-slider-next>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
         <p class="reviews-credit" data-reviews-credit hidden>Reviews from Google</p>
       </div>
     </section>

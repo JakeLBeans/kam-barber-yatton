@@ -76,10 +76,19 @@ const starString = (n) => "★★★★★".slice(0, Math.round(n)) + "☆☆☆
     $$("[data-write-review-link]").forEach((a) => (a.href = `https://search.google.com/local/writereview?placeid=${enc(SETTINGS.googlePlaceId)}`));
   }
 
+  // Tell screen-reader users when a link opens a new tab
+  $$('a[target="_blank"]').forEach((a) => {
+    if (a.querySelector(".sr-only")) return;
+    const note = document.createElement("span");
+    note.className = "sr-only";
+    note.textContent = " (opens in a new tab)";
+    a.appendChild(note);
+  });
+
   const credit = $("[data-credit]");
   if (credit && SETTINGS.creditName && SETTINGS.creditUrl) {
     const link = $("[data-credit-link]", credit);
-    link.textContent = SETTINGS.creditName;
+    link.prepend(SETTINGS.creditName); // keeps the "(opens in a new tab)" note added above
     link.href = SETTINGS.creditUrl;
     credit.hidden = false;
   }
@@ -172,6 +181,51 @@ if (SETTINGS.rating) showRating(SETTINGS.rating, SETTINGS.reviewCount);
       if (!ticking) { ticking = true; requestAnimationFrame(update); }
     }, { passive: true });
   }
+})();
+
+/* ---------- Reviews slider ---------- */
+(function reviewSlider() {
+  const track = $("[data-reviews]");
+  const controls = $("[data-slider-controls]");
+  if (!track || !controls) return;
+  const prev = $("[data-slider-prev]", controls);
+  const next = $("[data-slider-next]", controls);
+  const bar = $("[data-slider-bar]", controls);
+  const smooth = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+
+  const update = () => {
+    const max = track.scrollWidth - track.clientWidth;
+    controls.hidden = max <= 2;            // nothing to slide to
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft >= max - 2;
+    bar.style.width = `${(track.clientWidth / track.scrollWidth) * 100}%`;
+    bar.style.left = `${(track.scrollLeft / track.scrollWidth) * 100}%`;
+  };
+
+  // Move by one card on phones and a full set of cards on bigger screens
+  const step = (dir) => {
+    const card = track.firstElementChild;
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    const cardWidth = card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+    const perView = Math.max(1, Math.floor((track.clientWidth + gap) / cardWidth));
+    track.scrollBy({ left: dir * cardWidth * perView, behavior: smooth });
+  };
+
+  prev.addEventListener("click", () => step(-1));
+  next.addEventListener("click", () => step(1));
+  track.addEventListener("scroll", () => requestAnimationFrame(update), { passive: true });
+  window.addEventListener("resize", update);
+  window.cb1SliderUpdate = update;
+  update();
+})();
+
+/* ---------- Scroll cue fades once you start scrolling ---------- */
+(function scrollCue() {
+  const cue = $("[data-scroll-cue]");
+  if (!cue) return;
+  const update = () => cue.classList.toggle("is-hidden", window.scrollY > 40);
+  update();
+  window.addEventListener("scroll", update, { passive: true });
 })();
 
 /* ---------- Header turns solid once you scroll past the photo ---------- */
@@ -319,11 +373,14 @@ if (SETTINGS.rating) showRating(SETTINGS.rating, SETTINGS.reviewCount);
     if (place.regularOpeningHours?.periods) window.cb1ApplyGoogleHours(place.regularOpeningHours.periods);
     if (place.googleMapsURI) $$("[data-review-link]").forEach((a) => (a.href = place.googleMapsURI));
 
+    // Swap the sample cards for Google's reviews, keeping any written by hand
     const list = $("[data-reviews]");
-    const reviews = (place.reviews || []).filter((r) => r.text).slice(0, 3);
+    const reviews = (place.reviews || []).filter((r) => r.text);
     if (!reviews.length) return;
-    list.replaceChildren(...reviews.map(card));
+    $$(".is-sample", list).forEach((el) => el.remove());
+    reviews.forEach((r) => list.appendChild(card(r)));
     $("[data-reviews-credit]").hidden = false;
+    window.cb1SliderUpdate?.();
   }
 
   function card(r) {
@@ -333,6 +390,7 @@ if (SETTINGS.rating) showRating(SETTINGS.rating, SETTINGS.reviewCount);
     const stars = document.createElement("span");
     stars.className = "stars";
     stars.textContent = starString(r.rating);
+    stars.setAttribute("role", "img");
     stars.setAttribute("aria-label", `${r.rating} out of 5 stars`);
 
     const quote = document.createElement("blockquote");

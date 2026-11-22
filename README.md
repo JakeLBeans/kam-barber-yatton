@@ -84,3 +84,7 @@ The `haircut-images/` folder is only the source; it doesn't need deploying.
 ## Showcase: logo
 
 `showcase/assets/logo-white.svg`, `logo-black.svg` and `logo-mark-white.svg` (the hexagon on its own). The lettering is DM Serif Display; convert the text to outlines before sending the files to a printer or signwriter.
+
+## Showcase: adding reviews
+
+The reviews section is a slider, so it can hold any number of reviews. To add one, copy a card in the "What people say" list in `showcase/index.html` (there's a ready-made template in the comment just above it) and change the words, name and stars. Delete the six `is-sample` cards once real reviews are in. If live Google reviews are switched on, the samples are removed automatically, and Google's latest five are added after any you've written by hand.

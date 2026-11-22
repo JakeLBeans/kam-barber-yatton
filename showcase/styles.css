@@ -50,10 +50,12 @@ img { max-width: 100%; display: block; }
 a { color: inherit; }
 button { font: inherit; color: inherit; }
 
+/* Two-tone focus ring: the black inner line shows on light backgrounds, the gold outer ring on dark */
 :focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
-  border-radius: 3px;
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--gold);
+  border-radius: 2px;
 }
 
 .wrap {
@@ -133,6 +135,12 @@ button { font: inherit; color: inherit; }
   color: var(--paper);
   transition: background-color .25s ease, color .25s ease, box-shadow .25s ease;
 }
+/* Over the photo, a soft shadow keeps the logo and links readable against the bright ceiling lights */
+.site-header:not(.is-solid):not(.menu-open) .logo,
+.site-header:not(.is-solid):not(.menu-open) .nav a {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6), 0 0 14px rgba(0, 0, 0, .55);
+}
+.site-header:not(.is-solid):not(.menu-open) .logo-hex { filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .6)); }
 .site-header.is-solid {
   background: rgba(10, 10, 10, .94);
   -webkit-backdrop-filter: blur(10px);
@@ -157,12 +165,26 @@ button { font: inherit; color: inherit; }
 .logo-hex { width: 2.35rem; height: auto; flex: none; overflow: visible; }
 .logo-hex .hex-outer { fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
 .logo-hex .hex-inner { fill: none; stroke: currentColor; stroke-width: 1; stroke-linejoin: round; opacity: .55; }
-.logo-hex text { font-family: var(--serif); font-size: 24px; fill: currentColor; }
+.logo-hex text { font-family: var(--serif); font-size: 24px; fill: currentColor; transition: fill .25s ease; }
 .logo-footer .logo-word { font-size: 1.625rem; }
 .logo-footer .logo-hex { width: 2.75rem; }
-.nav { display: flex; gap: 1.75rem; }
-.nav a { text-decoration: none; font-size: var(--step--1); font-weight: 500; opacity: .85; padding-block: .5rem; }
-.nav a:hover { opacity: 1; }
+/* The 1 turns gold on black, matching the favicon: the solid header, the open phone menu, and the footer */
+.site-header.is-solid .logo-hex text,
+.site-header.menu-open .logo-hex text,
+.logo-footer .logo-hex text { fill: var(--gold); }
+.nav { display: flex; gap: 2.25rem; }
+.nav a {
+  text-decoration: none;
+  font-size: var(--step-0);
+  font-weight: 500;
+  opacity: .9;
+  padding-block: .5rem;
+  background: linear-gradient(var(--gold), var(--gold)) no-repeat left calc(100% - .2rem) / 0 1.5px;
+  transition: opacity .15s ease, background-size .25s cubic-bezier(.2, .7, .2, 1);
+}
+.nav a:hover { opacity: 1; background-size: 100% 1.5px; }
+/* Header button matches the larger links */
+.site-header .btn-small { min-height: 2.75rem; padding: .6rem 1.25rem; font-size: var(--step-0); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -190,11 +212,48 @@ button { font: inherit; color: inherit; }
 .hero-shade {
   position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(to bottom, rgba(0, 0, 0, .6) 0, transparent 9rem),
+    linear-gradient(to bottom, rgba(0, 0, 0, .72) 0, rgba(0, 0, 0, .35) 5rem, transparent 10rem),
     linear-gradient(to top, rgba(0, 0, 0, .88) 0%, rgba(0, 0, 0, .55) 38%, rgba(0, 0, 0, .1) 70%),
     linear-gradient(to right, rgba(0, 0, 0, .5), transparent 60%);
 }
 .hero-copy { padding-block: 8rem clamp(3rem, 2rem + 5svh, 6rem); }
+
+/* Scroll cue (phones only): a gold dash travelling down a thin line */
+.scroll-cue { display: none; }
+@media (max-width: 40rem) {
+  .hero-copy { padding-bottom: 6.5rem; }
+  .scroll-cue {
+    position: absolute; left: 50%; bottom: 1rem;
+    translate: -50% 0;
+    display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    padding: .5rem 1.25rem;
+    color: rgba(255, 255, 255, .8);
+    font-size: .875rem; font-weight: 500; letter-spacing: .02em;
+    text-decoration: none;
+    animation: rise .9s cubic-bezier(.2, .7, .2, 1) .9s both;
+    transition: opacity .4s ease;
+  }
+  .scroll-cue.is-hidden { opacity: 0; pointer-events: none; }
+}
+.scroll-cue-track {
+  position: relative;
+  width: 1.5px; height: 2.75rem;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, .25);
+  overflow: hidden;
+}
+.scroll-cue-track::after {
+  content: "";
+  position: absolute; left: 0; right: 0; top: 0;
+  height: 40%;
+  border-radius: 2px;
+  background: var(--gold);
+  animation: cue 1.9s cubic-bezier(.6, 0, .3, 1) 1.6s infinite both;
+}
+@keyframes cue {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(250%); }
+}
 .wordmark {
   font-family: var(--serif);
   font-optical-sizing: auto;
@@ -290,12 +349,58 @@ button { font: inherit; color: inherit; }
 .score-meta .stars { font-size: 1.25rem; }
 .reviews-links { display: flex; flex-wrap: wrap; gap: .75rem; }
 
+/* Slider: a native horizontal scroller that snaps to each card */
 .review-list {
+  --per-view: 3;
+  --gap: 1rem;
   list-style: none; margin: 0; padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - (var(--per-view) - 1) * var(--gap)) / var(--per-view));
+  gap: var(--gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
+.review-list::-webkit-scrollbar { display: none; }
+.review-list:focus-visible { outline-offset: 6px; }
+.review { scroll-snap-align: start; }
+
+.slider-controls {
+  display: flex; align-items: center; gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+.slider-progress {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, .14);
+  overflow: hidden;
+}
+.slider-progress span {
+  position: absolute; top: 0; bottom: 0; left: 0;
+  width: 33%;
+  background: var(--gold);
+  transition: left .35s cubic-bezier(.2, .7, .2, 1), width .35s ease;
+}
+.slider-btns { display: flex; gap: .5rem; }
+.slider-btn {
+  display: grid; place-items: center;
+  width: 3rem; height: 3rem;
+  padding: 0;
+  border: 1.5px solid rgba(255, 255, 255, .5);
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease, opacity .2s ease;
+}
+.slider-btn:hover:not(:disabled) { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.slider-btn:disabled { opacity: .3; cursor: default; }
+.slider-btn svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; }
+
 .review {
   display: flex; flex-direction: column; gap: .9rem;
   padding: 1.75rem;
@@ -329,7 +434,7 @@ button { font: inherit; color: inherit; }
   margin: 0;
   padding: .2rem .55rem;
   border-radius: 4px;
-  font-size: .75rem; font-weight: 600;
+  font-size: .875rem; font-weight: 600;
   background: #3A2E12; color: var(--gold);
 }
 .reviews-credit { margin: 1.5rem 0 0; font-size: var(--step--1); color: rgba(255, 255, 255, .55); }
@@ -614,7 +719,7 @@ html.menu-lock { overflow: hidden; }
 
 @media (max-width: 60rem) {
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .review-list { grid-template-columns: minmax(0, 1fr); }
+  .review-list { --per-view: 2; }
   .prices-grid,
   .visit-grid { grid-template-columns: minmax(0, 1fr); }
   .map-wrap { min-height: 22rem; }
@@ -643,5 +748,18 @@ html.menu-lock { overflow: hidden; }
     animation-duration: .001ms !important;
     animation-delay: 0ms !important;
     transition-duration: .001ms !important;
+  }
+  /* Hold the scroll cue's dash still instead of looping */
+  .scroll-cue-track::after { animation: none !important; transform: translateY(75%); }
+}
+
+/* Phones: one review at a time with the next one peeking in (after the tablet rule so it wins) */
+@media (max-width: 40rem) {
+  .review-list {
+    --per-view: 1.15; --gap: .75rem;
+    /* run to the screen edge, while cards still line up with the text above */
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
   }
 }
