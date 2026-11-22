@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Clevedon Barber 1 designs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #EDEDEA; --ink: #1A1A1A; --muted: #5E5E5A; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font: 1.0625rem/1.55 "Instrument Sans", system-ui, sans-serif;
+      padding: clamp(2rem, 5vw, 4.5rem) 1rem;
+    }
+    main { max-width: 72rem; margin: 0 auto; }
+    h1 {
+      font: 800 clamp(2.5rem, 2rem + 3vw, 4rem)/.95 "Big Shoulders Display", sans-serif;
+      text-transform: uppercase; margin: 0 0 .75rem;
+    }
+    p { margin: 0 0 2.5rem; color: var(--muted); max-width: 52ch; }
+    .options { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 2rem; }
+    a { color: inherit; text-decoration: none; display: block; }
+    img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.08); }
+    h2 { font-size: 1.25rem; margin: 1rem 0 .25rem; }
+    a:hover h2 { text-decoration: underline; text-underline-offset: .2em; }
+    a:focus-visible { outline: 3px solid var(--ink); outline-offset: 6px; border-radius: 4px; }
+    span { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Clevedon Barber 1</h1>
+    <p>Two colour options for the same site. Open each one and try it on your phone too.</p>
+    <div class="options">
+      <a href="black-gold/index.html">
+        <img src="black-gold/assets/og-image.png" alt="Black and gold version: gold lettering and a gold line drawing of Clevedon Pier on black">
+        <h2>Black and gold</h2>
+        <span>Gold-leaf lettering, like a signwritten shop window.</span>
+      </a>
+      <a href="navy-red/index.html">
+        <img src="navy-red/assets/og-image.png" alt="Navy and red version: white lettering and a white line drawing of Clevedon Pier on navy">
+        <h2>Navy, red and white</h2>
+        <span>Barber-pole colours with a seaside feel.</span>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

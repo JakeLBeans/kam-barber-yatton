@@ -1,0 +1,471 @@
+/* ==========================================================
+   Clevedon Barber 1
+   Palette: barber-pole red, white and navy, read through the
+   Bristol Channel and the Victorian pier.
+   ========================================================== */
+
+:root {
+  --navy: #17263A;        /* Channel navy: main ground */
+  --navy-deep: #0F1A28;   /* water, footer */
+  --white: #F1F2EE;       /* pier white */
+  --red: #C3302A;         /* pole red */
+  --red-dark: #A3241F;
+  --grey: #7D8A8E;        /* estuary grey */
+  --grey-light: #C9CFCF;
+  --ink: #17263A;
+
+  --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Type scale (perfect fourth-ish, fluid at the top end) */
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+  --step-3: clamp(2.5rem, 1.6rem + 3.6vw, 4.25rem);
+  --step-wordmark: clamp(4.5rem, min(1rem + 15vw, 19svh), 13.5rem);
+  --pier-h: clamp(12rem, 4rem + 15vw, 24rem);
+
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --max: 76rem;
+  --radius: 3px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip {
+  position: absolute; left: 1rem; top: -4rem; z-index: 100;
+  background: var(--white); color: var(--navy); padding: .6rem 1rem;
+  font-weight: 600; text-decoration: none; border-radius: var(--radius);
+}
+.skip:focus { top: 1rem; }
+
+.display {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: var(--step-3);
+  line-height: .95;
+  letter-spacing: .005em;
+  text-transform: uppercase;
+  margin: 0 0 1.25rem;
+}
+
+.small { font-size: var(--step--1); color: var(--grey); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 3rem;
+  padding: .75rem 1.5rem;
+  font: 600 var(--step-0)/1 var(--body);
+  text-decoration: none;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+  white-space: nowrap;
+}
+.btn-red { background: var(--red); color: #fff; }
+.btn-red:hover { background: var(--red-dark); }
+.btn-ghost { border-color: currentColor; color: inherit; }
+.btn-ghost:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
+.btn-small { min-height: 2.5rem; padding: .5rem 1rem; font-size: var(--step--1); background: var(--red); color: #fff; }
+.btn-small:hover { background: var(--red-dark); }
+
+.text-link {
+  font-weight: 600;
+  text-decoration-thickness: 2px;
+  text-underline-offset: .25em;
+  text-decoration-color: var(--red);
+}
+.text-link:hover { color: var(--red); }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--navy);
+  color: var(--white);
+  border-bottom: 1px solid rgba(241, 242, 238, .12);
+}
+.header-inner {
+  display: flex; align-items: center; gap: 2rem;
+  min-height: 4rem;
+}
+.mark {
+  display: inline-flex; align-items: center; gap: .65rem;
+  font-family: var(--display); font-weight: 800; font-size: 1.5rem;
+  text-transform: uppercase; text-decoration: none; letter-spacing: .01em;
+  margin-right: auto;
+}
+.mark-pole {
+  width: .7rem; height: 1.6rem; border-radius: 1rem;
+  border: 2px solid var(--white);
+  background: repeating-linear-gradient(-45deg,
+    var(--red) 0 4px, var(--white) 4px 8px, var(--navy) 8px 12px, var(--white) 12px 16px);
+}
+.nav { display: flex; gap: 1.75rem; }
+.nav a {
+  text-decoration: none; font-size: var(--step--1); font-weight: 500;
+  color: var(--grey-light);
+  padding-block: .5rem;
+}
+.nav a:hover { color: var(--white); }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  background: var(--navy);
+  color: var(--white);
+  overflow: hidden;
+  isolation: isolate;
+  min-height: calc(100svh - 4rem);
+  display: flex;
+  flex-direction: column;
+}
+.hero-copy {
+  position: relative; z-index: 2;
+  padding-top: clamp(2.5rem, 1rem + 6svh, 6rem);
+  padding-bottom: calc(var(--pier-h) * .72 + 1.5rem);
+}
+.wordmark {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: var(--step-wordmark);
+  line-height: .82;
+  letter-spacing: -.005em;
+  text-transform: uppercase;
+  margin: 0 0 clamp(1rem, 3svh, 1.75rem);
+}
+.wm-line { display: block; }
+.hero-lede {
+  max-width: 34ch;
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: var(--grey-light);
+  margin: 0 0 2rem;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.hero-status {
+  margin: 1.5rem 0 0;
+  font-size: var(--step--1);
+  color: var(--grey-light);
+  display: flex; align-items: center; gap: .55rem;
+  min-height: 1.5em;
+}
+.hero-status::before {
+  content: ""; width: .55rem; height: .55rem; border-radius: 50%;
+  background: var(--grey);
+}
+.hero-status:empty::before { display: none; }
+.hero-status.is-open::before { background: #4FBF7A; box-shadow: 0 0 0 4px rgba(79, 191, 122, .18); }
+
+/* The pier */
+.pier {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  margin: 0;
+  height: var(--pier-h);
+  color: var(--white);
+  z-index: 1;
+  pointer-events: none;
+}
+.pier-svg { width: 100%; height: 100%; display: block; }
+.pier-lines { opacity: .9; }
+.pier-lines .stroke-main { stroke-width: 3; }
+.pier-lines .stroke-fine { stroke-width: 1.5; opacity: .7; }
+
+.pier-lines path,
+.pier-lines line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.4s cubic-bezier(.6, .1, .2, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms + 200ms);
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+.tide { animation: tide 14s ease-in-out infinite alternate; }
+@keyframes tide {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-26px); }
+}
+
+.wordmark .wm-line,
+.hero-lede,
+.hero-actions,
+.hero-status {
+  animation: rise .8s cubic-bezier(.2, .7, .2, 1) both;
+}
+.wordmark .wm-line:nth-child(2) { animation-delay: .08s; }
+.hero-lede { animation-delay: .25s; }
+.hero-actions { animation-delay: .35s; }
+.hero-status { animation-delay: .45s; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Sections ---------- */
+.prices,
+.shop,
+.visit { padding-block: clamp(4rem, 3rem + 5vw, 7.5rem); }
+
+.section-head {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  justify-content: space-between; gap: .5rem 2rem;
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+}
+.section-head .display { margin: 0; }
+.section-note { margin: 0; color: var(--grey); max-width: 40ch; }
+
+/* ---------- Price board ---------- */
+.board {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2.5rem, 2rem + 3vw, 5rem);
+}
+.board-title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-2);
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  margin: 0 0 1rem;
+  padding-bottom: .75rem;
+  border-bottom: 3px solid var(--navy);
+}
+.price-list { list-style: none; margin: 0; padding: 0; }
+.price-list li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  column-gap: .5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--grey-light);
+}
+.item { font-weight: 600; font-size: var(--step-1); }
+.leader {
+  border-bottom: 2px dotted var(--grey);
+  transform: translateY(-.3em);
+  min-width: 1.5rem;
+}
+.price {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.875rem;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.desc {
+  grid-column: 1 / -1;
+  color: var(--grey);
+  font-size: var(--step--1);
+  margin-top: .3rem;
+  max-width: 46ch;
+}
+
+/* Barber-pole stripe divider */
+.pole-rule {
+  height: 14px;
+  background: repeating-linear-gradient(-45deg,
+    var(--red) 0 14px, var(--white) 14px 28px, var(--navy) 28px 42px, var(--white) 42px 56px);
+}
+
+/* ---------- The shop ---------- */
+.shop { background: var(--navy); color: var(--white); }
+.shop-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2.5rem, 2rem + 4vw, 6rem);
+  align-items: center;
+}
+.shop-copy p {
+  color: var(--grey-light);
+  max-width: 44ch;
+  margin: 0 0 1.25rem;
+  font-size: var(--step-1);
+  line-height: 1.6;
+}
+.shop-copy .text-link { display: inline-block; margin-top: .5rem; }
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+}
+.photo-main {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1290 / 963;
+  object-fit: cover;
+}
+.photo {
+  position: relative;
+  background:
+    repeating-linear-gradient(135deg, rgba(241,242,238,.04) 0 10px, transparent 10px 20px),
+    var(--navy-deep);
+  border: 1px solid rgba(241, 242, 238, .14);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex; align-items: flex-end;
+  padding: 1rem;
+  aspect-ratio: 3 / 2;
+}
+.photo span { font-size: var(--step--1); color: var(--grey); }
+.photos img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* ---------- Book ---------- */
+.book {
+  background: var(--red);
+  color: #fff;
+  padding-block: clamp(3.5rem, 3rem + 4vw, 6rem);
+}
+.book-inner p { max-width: 46ch; font-size: var(--step-1); margin: 0 0 2rem; }
+.book .btn-red { background: var(--white); color: var(--navy); }
+.book .btn-red:hover { background: #fff; }
+.book .btn-ghost:hover { color: var(--red); }
+.book :focus-visible { outline-color: var(--white); }
+
+/* ---------- Hours & visit ---------- */
+.visit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(3rem, 2rem + 4vw, 6rem);
+}
+.hours {
+  width: 100%;
+  max-width: 30rem;
+  border-collapse: collapse;
+  font-size: var(--step-1);
+}
+.hours th,
+.hours td {
+  text-align: left;
+  padding: .8rem .75rem;
+  border-bottom: 1px solid var(--grey-light);
+  font-variant-numeric: tabular-nums;
+}
+.hours th { font-weight: 600; }
+.hours td { text-align: right; color: #3c4a57; }
+.hours tr.is-today { background: var(--navy); color: var(--white); }
+.hours tr.is-today td { color: var(--white); }
+.hours tr.is-today th::after {
+  content: "Today";
+  margin-left: .6rem;
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--grey-light);
+}
+
+.address {
+  font-style: normal;
+  font-size: var(--step-1);
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+.contact { list-style: none; margin: 0 0 1.5rem; padding: 0; }
+.contact li + li { margin-top: .5rem; }
+.contact a {
+  font-weight: 600; font-size: var(--step-1);
+  text-decoration-thickness: 2px;
+  text-underline-offset: .25em;
+  text-decoration-color: var(--red);
+}
+.contact a:hover { color: var(--red); }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--navy-deep);
+  color: var(--grey-light);
+  padding-block: 2.5rem;
+}
+.footer-inner {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  justify-content: space-between; gap: .5rem 2rem;
+}
+.footer-mark {
+  margin: 0;
+  font-family: var(--display); font-weight: 800; font-size: 1.75rem;
+  text-transform: uppercase; color: var(--white);
+}
+.site-footer .small { margin: 0; color: var(--grey); }
+
+/* ---------- Phone quick bar ---------- */
+.quickbar { display: none; }
+
+@media (max-width: 52rem) {
+  .nav { display: none; }
+  .board,
+  .shop-grid,
+  .visit-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 40rem) {
+  .header-inner .btn-small { display: none; }
+  .quickbar {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: .5rem;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    padding: .6rem 1rem calc(.6rem + env(safe-area-inset-bottom));
+    background: var(--navy);
+    color: var(--white);
+    border-top: 1px solid rgba(241, 242, 238, .15);
+  }
+  body { padding-bottom: calc(4.25rem + env(safe-area-inset-bottom)); }
+  .hero { min-height: calc(100svh - 8.25rem - env(safe-area-inset-bottom)); }
+  .hero-actions .btn { flex: 1 1 100%; }
+  .hours td, .hours th { padding-inline: .5rem; }
+  .item { font-size: var(--step-0); }
+  .price { font-size: 1.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .tide { animation: none; }
+}
