@@ -2,7 +2,7 @@
 
 **https://kambarberyatton.com**
 
-A static website for Kam Barber Yatton, 108 High Street, Yatton BS49 4DW. It's a copy of the Clevedon Barber 1 site (https://clevedonbarber1.com) with the Yatton details swapped in. Plain HTML, CSS and a little JavaScript: no build step and no framework, so it can be hosted for free (it's set up for Vercel).
+A static website for Kam Barber Yatton, 110 High Street, Yatton BS49 4DW. It's a copy of the Clevedon Barber 1 site (https://clevedonbarber1.com) with the Yatton details swapped in. Plain HTML, CSS and a little JavaScript: no build step and no framework, so it can be hosted for free (it's set up for Vercel).
 
 ## Files
 
@@ -22,11 +22,9 @@ A static website for Kam Barber Yatton, 108 High Street, Yatton BS49 4DW. It's a
 ### Needs Kam
 
 - [ ] **Website on his Google Business Profile.** Add `https://kambarberyatton.com` in the *Website* field of the "Kam barber yatton" listing. This matters most for local searches like "barber Yatton".
-- [ ] **Fix the hours on Google.** His Google listing shows Mon 8:30am to midnight, and Tue and Wed starting at 12am. Change them to match the site (Mon to Sat 8:30am to 6:30pm, Sun 10am to 4pm). Google trusts matching details.
-- [ ] **Address.** Google says 108 High St. Companies House, his Facebook posts and other directories say 110 High Street. The site uses 108 to match Google. Check which is right and make them all match.
+- [ ] **Fix the hours on Google.** His Google listing shows Mon 8:30am to midnight, and Tue and Wed starting at 12am. Change them to match the site (Mon to Sat 8:30am to 6:30pm, Sun 10am to 4pm). Google trusts matching details. Jake suggested the fix on Google on 23 Nov 2026; tick this off once it shows.
+- [ ] **Fix the address on Google.** The shop is at 110 High Street (confirmed 23 Nov 2026), but his Google listing says 108 High St. Change it to 110 so it matches the site, Companies House and Facebook. Jake suggested the fix on Google on 23 Nov 2026; tick this off once it shows.
 - [ ] **Booking.** No Booksy (or other) page found for Yatton, so the "Book on Booksy" button is hidden and people call or walk in. If he sets one up, put the link in `SETTINGS.bookingUrl`.
-- [ ] **Permission for the children's photos.** Four of the new gallery photos are of children (cuts 02, 03, 05 and 06). Check the parents are happy for them to be on the site, as was done for Clevedon.
-- [ ] **Wheelchair access.** Removed, because it was about the Clevedon shop. Add it back if the Yatton shop is step-free.
 
 ### Needs you
 
@@ -38,15 +36,16 @@ A static website for Kam Barber Yatton, 108 High Street, Yatton BS49 4DW. It's a
 
 - **Reviews:** six real 5-star Google reviews for the Yatton shop, copied word for word on 23 Nov 2026 (Ezekwesirim's is the last paragraph of a longer one). Rating 5.0 from 13 reviews.
 - **Phone** 07393 538789, the same as Clevedon (confirmed by Jake 23 Nov 2026).
-- **Name, address and phone** from the Google listing (23 Nov 2026), used in the text, call buttons, map pin, directions and the Google search data.
+- **Name, address and phone:** 110 High Street, confirmed by Jake 23 Nov 2026 (Google wrongly says 108). Used in the text, call buttons, map pin, directions and the Google search data.
 - **Top photo:** inside the Yatton shop, from Kam on 23 Nov 2026 (`assets/photos/inside.jpg`, original in `haircut-images/inside-yatton.JPG`).
 - **Domain:** live at https://kambarberyatton.com on Vercel (23 Nov 2026). The canonical address, share tags, Google business data, `robots.txt` and `sitemap.xml` all use it.
-- **Prices:** the same as Clevedon, confirmed 23 Nov 2026 (same as Clevedon).
+- **Prices:** the same as Clevedon, confirmed 23 Nov 2026.
 - **Opening hours** Mon to Sat 8:30am to 6:30pm, Sun 10am to 4pm, confirmed 23 Nov 2026 (same as Clevedon). To change them, edit the hours table (`data-open` / `data-close` in 24-hour time, plus the visible text) **and** the `openingHoursSpecification` near the top of `index.html`.
 - **Share image:** `assets/og-image.jpg`, 1200×630, with the Yatton name over the Yatton interior. Shows in WhatsApp and Facebook previews.
 - **Icons:** `favicon.ico`, `assets/favicon.svg` and the PNGs in `assets/icons/` show a gold Y in the hexagon.
 - **Google business data:** name, address, phone, hours, map pin (51.3882, -2.8223) and a link to the Google listing (`hasMap`), matching the Google Business Profile.
-- **Gallery:** the 23 Clevedon cuts were swapped for 8 Yatton photos Kam sent on 23 Nov 2026. The originals are in `haircut-images/`. The screenshot bars at the top and bottom were cropped off, and none of the files has location data.
+- **Gallery:** the 23 Clevedon cuts were swapped for 8 Yatton photos Kam sent on 23 Nov 2026. The originals are in `haircut-images/`. The screenshot bars at the top and bottom were cropped off, and none of the files has location data. Parents of the children in cuts 02, 03, 05 and 06 agreed to the photos being used (confirmed 23 Nov 2026).
+- **Wheelchair access:** the shop is wheelchair accessible (confirmed 23 Nov 2026). Shown under the address and in the Google business data.
 - **Logo** reads "Kam Barber", with a Y for Yatton in the hexagon.
 
 

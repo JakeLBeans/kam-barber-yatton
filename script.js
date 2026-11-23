@@ -5,7 +5,7 @@
 
 const SETTINGS = {
   // What Google Maps searches for to place the pin and give directions.
-  mapQuery: "Kam Barber Yatton, 108 High St, Yatton, Bristol BS49 4DW",
+  mapQuery: "Kam Barber Yatton, 110 High St, Yatton, Bristol BS49 4DW",
 
   // The shop's Google star rating, as shown on its Google Maps listing, e.g. rating: 4.9, reviewCount: 87.
   // Leave as null to show a sample figure. Live Google reviews (below) fill these in automatically.
