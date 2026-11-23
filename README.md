@@ -25,7 +25,8 @@ A static website for Kam Barber Yatton, 108 High Street, Yatton BS49 4DW. It's a
 - [ ] **Address.** Google says 108 High St. Companies House, his Facebook posts and other directories say 110 High Street. The site uses 108 to match Google. Check which is right and make them all match.
 - [ ] **Prices.** These are the Clevedon prices. Check Yatton charges the same.
 - [ ] **Booking.** No Booksy (or other) page found for Yatton, so the "Book on Booksy" button is hidden and people call or walk in. If he sets one up, put the link in `SETTINGS.bookingUrl`.
-- [ ] **Hero photo.** The big photo at the top (`assets/photos/inside.webp`) is inside the Clevedon shop. Replace it with one of inside the Yatton shop. The 23 cuts stay as they are (agreed 23 Nov 2026).
+- [ ] **Hero photo.** The big photo at the top (`assets/photos/inside.webp`) is inside the Clevedon shop. Replace it with one of inside the Yatton shop. Kam's first batch of Yatton photos (23 Nov 2026) was all cuts, with no shop interior.
+- [ ] **Permission for the children's photos.** Four of the new gallery photos are of children (cuts 02, 03, 05 and 06). Check the parents are happy for them to be on the site, as was done for Clevedon.
 - [ ] **Wheelchair access.** Removed, because it was about the Clevedon shop. Add it back if the Yatton shop is step-free.
 - [ ] **Website on his Google Business Profile** once it's live.
 
@@ -40,6 +41,7 @@ A static website for Kam Barber Yatton, 108 High Street, Yatton BS49 4DW. It's a
 - **Reviews:** six real 5-star Google reviews for the Yatton shop, copied word for word on 23 Nov 2026 (Ezekwesirim's is the last paragraph of a longer one). Rating 5.0 from 13 reviews.
 - **Phone** 07393 538789, the same as Clevedon (confirmed by Jake 23 Nov 2026).
 - **Name, address and phone** from the Google listing (23 Nov 2026), used in the text, call buttons, map pin, directions and the Google search data.
+- **Gallery:** the 23 Clevedon cuts were swapped for 8 Yatton photos Kam sent on 23 Nov 2026. The originals are in `haircut-images/`. The screenshot bars at the top and bottom were cropped off, and none of the files has location data.
 - **Logo** reads "Kam Barber", with a Y for Yatton in the hexagon.
 
 
@@ -62,8 +64,8 @@ Everything else (prices, hours, wording) is in `index.html`, and colours, fonts 
 
 The originals Kam sent are in `haircut-images/` (not deployed). Each photo on the site comes in two sizes in `assets/photos/work/`: `cut-NN-small.jpg` for the grid and `cut-NN.jpg` for full screen. To add one, make both sizes with macOS's built-in tool, then copy one of the gallery `<li>` lines in `index.html`, point it at the new files and write a short description in `alt`:
 
-    sips -s format jpeg -s formatOptions 74 -Z 800  photo.jpg --out cut-24-small.jpg
-    sips -s format jpeg -s formatOptions 80 -Z 1600 photo.jpg --out cut-24.jpg
+    sips -s format jpeg -s formatOptions 74 -Z 800  photo.jpg --out cut-09-small.jpg
+    sips -s format jpeg -s formatOptions 80 -Z 1600 photo.jpg --out cut-09.jpg
 
 ### Adding reviews
 
