@@ -22,7 +22,7 @@ A static website for Kam Barber Yatton, 108 High Street, Yatton BS49 4DW. It's a
 ### Needs Kam
 
 - [ ] **Website on his Google Business Profile.** Add `https://kambarberyatton.com` in the *Website* field of the "Kam barber yatton" listing. This matters most for local searches like "barber Yatton".
-- [ ] **Opening hours.** His Google listing shows Mon 8:30am to midnight, Tue 12am to 6:30am then 8:30am to midnight, and Wed 12am to 6:30am then 8:30am to 6:30pm, which looks like a mistake. The site shows Mon to Sat 8:30am to 6:30pm and Sun 9:30am to 4pm (Thu to Sun as Google has them). Confirm with Kam, and fix the Google listing.
+- [ ] **Fix the hours on Google.** His Google listing shows Mon 8:30am to midnight, and Tue and Wed starting at 12am. Change them to match the site (Mon to Sat 8:30am to 6:30pm, Sun 10am to 4pm). Google trusts matching details.
 - [ ] **Address.** Google says 108 High St. Companies House, his Facebook posts and other directories say 110 High Street. The site uses 108 to match Google. Check which is right and make them all match.
 - [ ] **Booking.** No Booksy (or other) page found for Yatton, so the "Book on Booksy" button is hidden and people call or walk in. If he sets one up, put the link in `SETTINGS.bookingUrl`.
 - [ ] **Permission for the children's photos.** Four of the new gallery photos are of children (cuts 02, 03, 05 and 06). Check the parents are happy for them to be on the site, as was done for Clevedon.
@@ -41,7 +41,8 @@ A static website for Kam Barber Yatton, 108 High Street, Yatton BS49 4DW. It's a
 - **Name, address and phone** from the Google listing (23 Nov 2026), used in the text, call buttons, map pin, directions and the Google search data.
 - **Top photo:** inside the Yatton shop, from Kam on 23 Nov 2026 (`assets/photos/inside.jpg`, original in `haircut-images/inside-yatton.JPG`).
 - **Domain:** live at https://kambarberyatton.com on Vercel (23 Nov 2026). The canonical address, share tags, Google business data, `robots.txt` and `sitemap.xml` all use it.
-- **Prices:** the same as Clevedon, confirmed 23 Nov 2026.
+- **Prices:** the same as Clevedon, confirmed 23 Nov 2026 (same as Clevedon).
+- **Opening hours** Mon to Sat 8:30am to 6:30pm, Sun 10am to 4pm, confirmed 23 Nov 2026 (same as Clevedon). To change them, edit the hours table (`data-open` / `data-close` in 24-hour time, plus the visible text) **and** the `openingHoursSpecification` near the top of `index.html`.
 - **Share image:** `assets/og-image.jpg`, 1200×630, with the Yatton name over the Yatton interior. Shows in WhatsApp and Facebook previews.
 - **Icons:** `favicon.ico`, `assets/favicon.svg` and the PNGs in `assets/icons/` show a gold Y in the hexagon.
 - **Google business data:** name, address, phone, hours, map pin (51.3882, -2.8223) and a link to the Google listing (`hasMap`), matching the Google Business Profile.
