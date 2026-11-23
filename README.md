@@ -1,6 +1,6 @@
 # Kam Barber Yatton
 
-**https://kam-barber-yatton.vercel.app** (until Kam has his own domain)
+**https://kambarberyatton.com**
 
 A static website for Kam Barber Yatton, 108 High Street, Yatton BS49 4DW. It's a copy of the Clevedon Barber 1 site (https://clevedonbarber1.com) with the Yatton details swapped in. Plain HTML, CSS and a little JavaScript: no build step and no framework, so it can be hosted for free (it's set up for Vercel).
 
@@ -21,19 +21,18 @@ A static website for Kam Barber Yatton, 108 High Street, Yatton BS49 4DW. It's a
 
 ### Needs Kam
 
+- [ ] **Website on his Google Business Profile.** Add `https://kambarberyatton.com` in the *Website* field of the "Kam barber yatton" listing. This matters most for local searches like "barber Yatton".
 - [ ] **Opening hours.** His Google listing shows Mon 8:30am to midnight, Tue 12am to 6:30am then 8:30am to midnight, and Wed 12am to 6:30am then 8:30am to 6:30pm, which looks like a mistake. The site shows Mon to Sat 8:30am to 6:30pm and Sun 9:30am to 4pm (Thu to Sun as Google has them). Confirm with Kam, and fix the Google listing.
 - [ ] **Address.** Google says 108 High St. Companies House, his Facebook posts and other directories say 110 High Street. The site uses 108 to match Google. Check which is right and make them all match.
-- [ ] **Prices.** These are the Clevedon prices. Check Yatton charges the same.
 - [ ] **Booking.** No Booksy (or other) page found for Yatton, so the "Book on Booksy" button is hidden and people call or walk in. If he sets one up, put the link in `SETTINGS.bookingUrl`.
 - [ ] **Permission for the children's photos.** Four of the new gallery photos are of children (cuts 02, 03, 05 and 06). Check the parents are happy for them to be on the site, as was done for Clevedon.
 - [ ] **Wheelchair access.** Removed, because it was about the Clevedon shop. Add it back if the Yatton shop is step-free.
-- [ ] **Website on his Google Business Profile** once it's live.
 
 ### Needs you
 
-- [ ] **Domain.** Decide whether he wants one. If so, replace `https://kam-barber-yatton.vercel.app` in `index.html` (canonical, share tags and business data), `robots.txt` and `sitemap.xml`.
-- [ ] **Share image.** `assets/og-image.jpg` still shows the Clevedon name and address, so it's switched off in `index.html` for now. Make a Yatton one and add the `og:image` tags back.
-- [ ] **Icons.** `assets/favicon.svg` and the logos now show a Y in the hexagon, but `favicon.ico` and the PNGs in `assets/icons/` still show the Clevedon 1. Regenerate them from `assets/favicon.svg`.
+- [ ] **Google Search Console.** Add `https://kambarberyatton.com` as a new property, submit `https://kambarberyatton.com/sitemap.xml` and request indexing, as was done for Clevedon.
+- [ ] **Check the domain is in Kam's name**, with auto-renew on.
+- [ ] **Same details everywhere.** Facebook and any directory listings should use exactly the same name, address and phone as the site and Google, and link to it.
 
 ## Already done
 
@@ -41,6 +40,11 @@ A static website for Kam Barber Yatton, 108 High Street, Yatton BS49 4DW. It's a
 - **Phone** 07393 538789, the same as Clevedon (confirmed by Jake 23 Nov 2026).
 - **Name, address and phone** from the Google listing (23 Nov 2026), used in the text, call buttons, map pin, directions and the Google search data.
 - **Top photo:** inside the Yatton shop, from Kam on 23 Nov 2026 (`assets/photos/inside.jpg`, original in `haircut-images/inside-yatton.JPG`).
+- **Domain:** live at https://kambarberyatton.com on Vercel (23 Nov 2026). The canonical address, share tags, Google business data, `robots.txt` and `sitemap.xml` all use it.
+- **Prices:** the same as Clevedon, confirmed 23 Nov 2026.
+- **Share image:** `assets/og-image.jpg`, 1200×630, with the Yatton name over the Yatton interior. Shows in WhatsApp and Facebook previews.
+- **Icons:** `favicon.ico`, `assets/favicon.svg` and the PNGs in `assets/icons/` show a gold Y in the hexagon.
+- **Google business data:** name, address, phone, hours, map pin (51.3882, -2.8223) and a link to the Google listing (`hasMap`), matching the Google Business Profile.
 - **Gallery:** the 23 Clevedon cuts were swapped for 8 Yatton photos Kam sent on 23 Nov 2026. The originals are in `haircut-images/`. The screenshot bars at the top and bottom were cropped off, and none of the files has location data.
 - **Logo** reads "Kam Barber", with a Y for Yatton in the hexagon.
 
@@ -76,7 +80,7 @@ Copy a card in the "What people say" list in `index.html`. There's a ready-made 
 1. Make sure Kam's **Google Business Profile** is claimed in his name (it's free).
 2. Find its **Place ID** with Google's Place ID Finder: https://developers.google.com/maps/documentation/places/web-service/place-id
 3. In **Google Cloud Console** (in Kam's account), create a project, turn on **Maps JavaScript API** and **Places API (New)**, and create an **API key**.
-4. Restrict the key. Under *Application restrictions* choose *Websites* and add the live domain (`https://kam-barber-yatton.vercel.app/* (or his own domain once he has one)`). Under *API restrictions* allow only those two APIs.
+4. Restrict the key. Under *Application restrictions* choose *Websites* and add the live domain (`https://kambarberyatton.com/*`). Under *API restrictions* allow only those two APIs.
 5. Put both values in `SETTINGS.googleApiKey` and `SETTINGS.googlePlaceId` in `script.js`.
 
 Google's free monthly allowance is far more than one shop's site will use, but it asks for a billing card. Set a £1 budget alert for peace of mind. The map and directions buttons don't need a key.
