@@ -21,19 +21,20 @@ A static website for Kam Barber Yatton, 110 High Street, Yatton BS49 4DW. It's a
 
 ### Needs Kam
 
-- [ ] **Website on his Google Business Profile.** Add `https://kambarberyatton.com` in the *Website* field of the "Kam barber yatton" listing. This matters most for local searches like "barber Yatton".
+- [ ] **Website on his Google Business Profile.** Add `https://kambarberyatton.com` in the *Website* field of the "Kam barber yatton" listing. This matters most for local searches like "barber Yatton". Jake suggested it on Google on 23 Nov 2026; tick this off once it shows.
 - [ ] **Fix the hours on Google.** His Google listing shows Mon 8:30am to midnight, and Tue and Wed starting at 12am. Change them to match the site (Mon to Sat 8:30am to 6:30pm, Sun 10am to 4pm). Google trusts matching details. Jake suggested the fix on Google on 23 Nov 2026; tick this off once it shows.
 - [ ] **Fix the address on Google.** The shop is at 110 High Street (confirmed 23 Nov 2026), but his Google listing says 108 High St. Change it to 110 so it matches the site, Companies House and Facebook. Jake suggested the fix on Google on 23 Nov 2026; tick this off once it shows.
 - [ ] **Booking.** No Booksy (or other) page found for Yatton, so the "Book on Booksy" button is hidden and people call or walk in. If he sets one up, put the link in `SETTINGS.bookingUrl`.
 
 ### Needs you
 
-- [ ] **Google Search Console.** Add `https://kambarberyatton.com` as a new property, submit `https://kambarberyatton.com/sitemap.xml` and request indexing, as was done for Clevedon.
-- [ ] **Check the domain is in Kam's name**, with auto-renew on.
 - [ ] **Same details everywhere.** Facebook and any directory listings should use exactly the same name, address and phone as the site and Google, and link to it.
 
 ## Already done
 
+- **Google Search Console:** set up for `https://kambarberyatton.com` with the sitemap submitted (23 Nov 2026).
+- **Domain ownership:** checked it's in Kam's name, with auto-renew on (23 Nov 2026).
+- **www:** `www.kambarberyatton.com` redirects to `https://kambarberyatton.com` (checked 23 Nov 2026).
 - **Reviews:** six real 5-star Google reviews for the Yatton shop, copied word for word on 23 Nov 2026 (Ezekwesirim's is the last paragraph of a longer one). Rating 5.0 from 13 reviews.
 - **Phone** 07393 538789, the same as Clevedon (confirmed by Jake 23 Nov 2026).
 - **Name, address and phone:** 110 High Street, confirmed by Jake 23 Nov 2026 (Google wrongly says 108). Used in the text, call buttons, map pin, directions and the Google search data.
