@@ -1,5 +1,5 @@
 /* ==========================================================
-   Clevedon Barber 1
+   Kam Barber Yatton
    White gallery walls so the photos lead, with the black and
    gold of the shop's chairs as the accents.
    ========================================================== */
@@ -148,7 +148,7 @@ button { font: inherit; color: inherit; }
   box-shadow: 0 1px 0 rgba(255, 255, 255, .08);
 }
 .header-inner { display: flex; align-items: center; gap: 2rem; min-height: 4.25rem; }
-/* Logo: "Clevedon Barber" with the 1 set in a hexagon, after the shop's light ceiling */
+/* Logo: "Kam Barber" with a Y (for Yatton) set in a hexagon, after the Clevedon shop's light ceiling */
 .logo {
   display: inline-flex; align-items: center; gap: .55rem;
   color: var(--paper);

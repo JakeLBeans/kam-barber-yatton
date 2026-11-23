@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://clevedonbarber1.com/sitemap.xml
+Sitemap: https://kam-barber-yatton.vercel.app/sitemap.xml

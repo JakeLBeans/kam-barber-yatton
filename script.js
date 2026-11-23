@@ -1,21 +1,21 @@
 /* ==========================================================
-   Clevedon Barber 1
+   Kam Barber Yatton
    Everything a non-developer might need to change is in SETTINGS.
    ========================================================== */
 
 const SETTINGS = {
   // What Google Maps searches for to place the pin and give directions.
-  mapQuery: "Clevedon Barber 1, 13 Old Church Road, Clevedon BS21 6LZ",
+  mapQuery: "Kam Barber Yatton, 108 High St, Yatton, Bristol BS49 4DW",
 
   // The shop's Google star rating, as shown on its Google Maps listing, e.g. rating: 4.9, reviewCount: 87.
   // Leave as null to show a sample figure. Live Google reviews (below) fill these in automatically.
-  rating: 4.9,
-  reviewCount: 164,
+  rating: 5.0,
+  reviewCount: 13,
 
   // Online booking page (Booksy, Fresha, Setmore...). Leave empty to hide the "Book online" button.
-  bookingUrl: "https://booksy.com/en-gb/190439_clevedon-barber1_barber_1143398_clevedon",
+  bookingUrl: "",
 
-  // Instagram profile, e.g. "https://www.instagram.com/clevedonbarber1/". Leave empty to hide the link.
+  // Instagram profile, e.g. "https://www.instagram.com/kambarberyatton/". Leave empty to hide the link.
   instagramUrl: "",
 
   // Live Google reviews. Needs both of these; see README.md for how to get them.
